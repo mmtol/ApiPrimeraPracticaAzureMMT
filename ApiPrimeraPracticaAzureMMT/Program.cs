@@ -26,6 +26,5 @@ app.MapGet("/", context =>
 });
 
 app.UseStaticFiles();
-app.UseHttpsRedirection();
 
 app.Run();
