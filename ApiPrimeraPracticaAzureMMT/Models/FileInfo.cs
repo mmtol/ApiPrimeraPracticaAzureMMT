@@ -2,7 +2,7 @@
 {
     public class FileInfo
     {
-        public string FileName { get; set; }
-        public string UrlPath { get; set; }
+        public string fileName { get; set; }
+        public string urlpath { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class FileModel
     {
-        public string FileName { get; set; }
-        public string FileContent { get; set; }
+        public string filename { get; set; }
+        public string filecontent { get; set; }
     }
 }

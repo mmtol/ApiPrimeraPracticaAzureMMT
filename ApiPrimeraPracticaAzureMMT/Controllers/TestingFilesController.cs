@@ -6,17 +6,16 @@ namespace ApiPrimeraPracticaAzureMMT.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FilesController : ControllerBase
+    public class TestingFilesController : ControllerBase
     {
         private HelperPathProvider helper;
 
-        public FilesController(HelperPathProvider helper)
+        public TestingFilesController(HelperPathProvider helper)
         {
             this.helper = helper;
         }
 
-        [HttpGet]
-        [Route("[action]/Images")]
+        [HttpGet("Images")]
         public ActionResult<List<Models.FileInfo>> TestingFiles()
         {
             var carpeta = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images");
@@ -24,8 +23,8 @@ namespace ApiPrimeraPracticaAzureMMT.Controllers
             var files = Directory.GetFiles(carpeta)
                 .Select(file => new Models.FileInfo
                 {
-                    FileName = Path.GetFileName(file),
-                    UrlPath = $"{Request.Scheme}://{Request.Host}/images/{Path.GetFileName(file)}"
+                    fileName = Path.GetFileName(file),
+                    urlpath = $"{Request.Scheme}://{Request.Host}/images/{Path.GetFileName(file)}"
                 }).ToList();
 
             return Ok(files);
@@ -34,8 +33,8 @@ namespace ApiPrimeraPracticaAzureMMT.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> TestingFiles(FileModel model)
         {
-            byte[] bytes = Convert.FromBase64String(model.FileContent);
-            string ruta = await SubirFileAsync(bytes, model.FileName);
+            byte[] bytes = Convert.FromBase64String(model.filecontent);
+            string ruta = await SubirFileAsync(bytes, model.filename);
             return ruta;
         }
 
